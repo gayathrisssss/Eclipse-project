@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Registration</title>
+    <style>
+    body {
+        font-family: Arial, sans-serif;
+        background-size: cover;
+        background-image: url('bgimg.jpg');
+        backgroung-color:red;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        margin: 0;
+        position: relative;
+    }
+
+    /* Adding blur effect to the background */
+    body::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: inherit;
+        filter: blur(8px);
+        z-index: -1;
+    }
+
+    .form-container {
+        background: rgba(255, 255, 255, 0.7); /* Semi-transparent */
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0px 0px 10px gray;
+        width: 600px;
+        position: relative;
+        z-index: 1;
+    }
+
+
+.header, .sub-header {
+            text-align: center;
+            font-weight: bold;
+        }
+        .header {
+            font-size: 22px;
+            margin-bottom: 10px;
+        }
+        .sub-header {
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+        .form-group {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        label {
+            width: 30%;
+            font-weight: bold;
+        }
+        input, select {
+            width: 65%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: rgba(48, 134, 149, 0.5);
+        }
+        input:focus, select:focus {
+            background-color: rgba(211, 211, 211, 0.7);
+            border: 1px solid #888;
+        }
+        .password-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            justify-content: flex-start;
+        }
+        .password-container label {
+            font-size: 14px;
+            cursor: pointer;
+        }
+        #submit-btn {
+            background: green;
+            color: white;
+            padding: 10px;
+            width: 100%;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 5px;
+        }
+        #submit-btn:hover {
+            background: darkgreen;
+        }
+    </style>
+    <script>
+        function togglePassword() {
+            var pass = document.getElementById("password");
+            var confirmPass = document.getElementById("confirm_password");
+            pass.type = pass.type === "password" ? "text" : "password";
+            confirmPass.type = confirmPass.type === "password" ? "text" : "password";
+        }
+        function validatePassword() {
+            var password = document.getElementById("password").value;
+            var confirmPassword = document.getElementById("confirm_password").value;
+            if (password !== confirmPassword) {
+                alert("Passwords do not match. Please enter the correct password.");
+                return false;
+            }
+            return true;
+        }
+    </script>
+</head>
+<body><br><br>
+    <div class="header">QUEEN MARY'S COLLEGE - AUTONOMOUS, CHENNAI 600 004</div>
+    <div class="sub-header">DEPARTMENT OF COMPUTER APPLICATIONS</div>
+    <div class="sub-header">MAD APP - LEARNING THE MOBILE WAY</div>
+    <div class="form-container">
+        <h2 style="text-align:center;">Student Registration Form</h2>
+        <form id="registration-form" action="register.php" method="POST" onsubmit="return validatePassword()">
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="phone">Phone:</label>
+                <input type="text" id="phone" name="phone" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <div class="form-group">
+                <label for="confirm_password">Confirm Password:</label>
+                <input type="password" id="confirm_password" name="confirm_password" required>
+            </div>
+            <div class="form-group password-container">
+                <input type="checkbox" id="show-password" onclick="togglePassword()"> 
+                <label for="show-password">Show Password</label>
+            </div>
+            <div class="form-group">
+                <label for="department">Department:</label>
+                <select id="department" name="department" required>
+                    <option value="">Select Department</option>
+                    <option value="B.SC CS">B.SC CS</option>
+                    <option value="B.SC CA">B.SC CA</option>
+                    <option value="OTHER">OTHER</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="year">Year:</label>
+                <select id="year" name="year" required>
+                    <option value="">Select Year</option>
+                    <option value="I">I</option>
+                    <option value="II">II</option>
+                    <option value="III">III</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="batch">Batch:</label>
+                <select id="batch" name="batch" required>    
+                    <option value="">Select Batch</option>
+                    <option value="2022-25">2022-25</option>
+                    <option value="2023-26">2023-26</option>
+                    <option value="2024-27">2024-27</option>
+                    <option value="2025-28">2025-28</option>
+                </select>
+            </div>
+            <button type="submit" id="submit-btn">Register</button>
+        </form>
+    </div>
+</body>
+</html>
